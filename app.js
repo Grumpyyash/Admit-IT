@@ -27,7 +27,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect("mongodb+srv://admin-yash:Yash123@cluster0-1lje1.mongodb.net/admititDB", {useNewUrlParser: true});
+mongoose.connect("mongodb+srv://admin-yash:Yash123@cluster0-1lje1.mongodb.net/userDB", {useNewUrlParser: true});
 mongoose.set('useCreateIndex', true);
 
 const userSchema = new mongoose.Schema({
@@ -332,7 +332,9 @@ app.post("/login", function(req, res){
 });
 
 let port = process.env.PORT;
-
+if (port == null || port == "") {
+  port = 3000;
+}
 
 app.listen(port, function() {
   console.log("Server has started successfully");
